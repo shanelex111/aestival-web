@@ -34,6 +34,9 @@ export function Signin() {
         }, 1000);
     }
 
+    const handleSignIn = () => {
+        // 登录逻辑
+    }
     return (
         <div className="w-full max-w-sm mx-auto px-6 py-8">
             {/* Tab Navigation */}
@@ -73,21 +76,21 @@ export function Signin() {
                 {activeTab === SIGNIN_TYPES.SMS && (
                     <div className="space-y-3">
                         <div className="relative">
-                            <div className="flex items-center bg-muted/50 rounded-lg border overflow-hidden">
+                            <div className="flex items-center bg-muted/50 rounded-lg border overflow-hidden h-14">
                                 <Input
                                     type="text"
                                     placeholder="请输入验证码"
                                     value={verificationCode}
                                     onChange={(e) => setVerificationCode(e.target.value)}
                                     maxLength={6}
-                                    className="border-0 bg-transparent placeholder:text-muted-foreground text-base py-4 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 flex-1 shadow-none"
+                                    className="border-0 bg-transparent placeholder:text-muted-foreground text-base py-4 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 flex-1 shadow-none h-full"
                                 />
-                                <div className="border-l">
+                                <div className="border-l h-full">
                                     <Button
                                         variant="ghost"
                                         onClick={handleGetVerificationCode}
                                         disabled={phoneNumber.length < 11 || countdown > 0}
-                                        className="whitespace-nowrap text-muted-foreground hover:text-foreground px-4 py-4 h-auto rounded-none"
+                                        className="whitespace-nowrap text-muted-foreground hover:text-foreground px-4 py-4 h-full rounded-none"
                                     >
                                         {countdown > 0 ? `${countdown}s后重新发送` : "获取验证码"}
                                     </Button>
@@ -100,8 +103,8 @@ export function Signin() {
 
                 {activeTab === SIGNIN_TYPES.PASSWORD && (
                     <div className="relative">
-                        <div className="flex items-center bg-muted/50 rounded-lg border overflow-hidden">
-                            <div className="flex items-center px-4 py-4 border-r">
+                        <div className="flex items-center bg-muted/50 rounded-lg border overflow-hidden h-14">
+                            <div className="flex items-center px-4 py-4 border-r h-full">
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
@@ -141,11 +144,25 @@ export function Signin() {
                                 placeholder="请输入密码"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="border-0 bg-transparent placeholder:text-muted-foreground text-base py-4 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none"
+                                className="border-0 bg-transparent placeholder:text-muted-foreground text-base py-4 px-4 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none h-full"
                             />
                         </div>
                     </div>
                 )}
+
+                <Button
+                    onClick={handleSignIn}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-4 rounded-lg text-base mt-8 h-14"
+                    disabled={
+                        !phoneNumber ||
+                        (activeTab === SIGNIN_TYPES.SMS && !verificationCode) ||
+                        (activeTab === SIGNIN_TYPES.PASSWORD && !password)
+                    }
+                >
+
+                    登录/注册
+                </Button>
+
             </div>
 
 
