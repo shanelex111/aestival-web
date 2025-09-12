@@ -160,7 +160,7 @@ export function Signin() {
                     }
                 >
 
-                    登录/注册
+                    {activeTab === SIGNIN_TYPES.SMS ? "登录/注册" : "登录"}
                 </Button>
 
             </div>
