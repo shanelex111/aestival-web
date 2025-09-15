@@ -90,7 +90,7 @@ export function Signin() {
                                         variant="ghost"
                                         onClick={handleGetVerificationCode}
                                         disabled={phoneNumber.length < 11 || countdown > 0}
-                                        className="whitespace-nowrap text-muted-foreground hover:text-foreground px-4 py-4 h-full rounded-none"
+                                        className="whitespace-nowrap text-muted-foreground hover:text-foreground px-4 py-4 h-full rounded-none w-32 text-center"
                                     >
                                         {countdown > 0 ? `${countdown}s后重新发送` : "获取验证码"}
                                     </Button>
